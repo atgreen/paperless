@@ -44,7 +44,7 @@
 	 (lambda (s)
 	   (s-contains? "/." s))
 	 (f-directories *paperless-root-dir* nil t)))
-  (paperless-mode) 
+  (paperless-mode)
   (tabulated-list-print t))
 
 (defun paperless-display ()
@@ -107,14 +107,15 @@
   (setq tabulated-list-format [(" " 1 nil)("Document" 30 nil)("Destination" 20 nil)])
   (setq tabulated-list-entries 'paperless/table-entries)
   (setq tabulated-list-padding 2)
-  (setq paperless-mode-map
-	(let ((map (make-sparse-keymap)))
-	  (define-key map (kbd "SPC") 'paperless-display)
-	  (define-key map "f" 'paperless-file)
-	  (define-key map "r" 'paperless-rename)
-	  (define-key map "x" 'paperless-execute)
-	  map))
   (tabulated-list-init-header))
+
+(setq paperless-mode-map
+      (let ((map (make-sparse-keymap)))
+	(define-key map (kbd "SPC") 'paperless-display)
+	(define-key map "f" 'paperless-file)
+	(define-key map "r" 'paperless-rename)
+	(define-key map "x" 'paperless-execute)
+	map))
 
 (defun paperless/dirtree ()
   paperless/directory-list)
