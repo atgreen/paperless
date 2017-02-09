@@ -98,14 +98,14 @@
      delete-list)
     (tabulated-list-print t)))
 
-(defun paperless/table-entrys ()
+(defun paperless/table-entries ()
   "Make the entry table for the list."
   paperless/table-contents)
 
 (define-derived-mode paperless-mode tabulated-list-mode "Paperless Filing"
-  "Major mode for re-filing a list of PDF documents."
+  "Major mode for filing a list of PDF documents."
   (setq tabulated-list-format [(" " 1 nil)("Document" 30 nil)("Destination" 20 nil)])
-  (setq tabulated-list-entries 'paperless/table-entrys)
+  (setq tabulated-list-entries 'paperless/table-entries)
   (setq tabulated-list-padding 2)
   (setq paperless-mode-map
 	(let ((map (make-sparse-keymap)))
