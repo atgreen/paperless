@@ -61,13 +61,20 @@ At the time of this writing, the author's directory tree contains over
 
 ## Step 3
 
-WIP.  Load and run (paperless).  Use `[SPC]`, `f`, `d` and `x` keys. 
+Load and run (paperless) and you'll be presented with a list of PDF
+files in `*paperless-capture-dir*`.  Use the `[SPC]` key to open PDF
+preview buffers.  Use the `r` key to rename the file.  If you omit a
+filename extention, paperless will append ".pdf" to your new filename.
+Use the `f` key to select the destination directory.  Files aren't
+renamed or moved until you select the `x` key.
 
 ## Installation
 
+TBD
+
 ## Licensing
 
-Copyright 2016 by Anthony Green
+Copyright (C) 2016 by Anthony Green
 
 Paperless is provided under the terms of the 3-clause BSD license.
 See paperless.el for details.
