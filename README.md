@@ -13,38 +13,44 @@ Scan your documents and dump them into a holding directory.  Set the
 variable `*paperless-capture-dir*` to reference this directory.  For
 instance, my ~/.emacs/init.el file includes:
 
- (setq *paperless-capture-dir* "/home/green/TOL/CAPTURE")
+```lisp
+(setq *paperless-capture-dir* "/home/green/TOL/CAPTURE")
+```
 
 ## Step 2
 
 Tell paperless-mode where to file the documents by setting
 `*paperless-root-dir*`, like so:
 
- (setq *paperless-root-dir* "/home/green/Documents")
+```lisp
+(setq *paperless-root-dir* "/home/green/Documents")
+```
 
 Under `*paperless-root-dir*`, create a hierarchy of directories that
 makes sense for you.  For example, you might create directories to
 sort documents like so:
 
-  *paperless-root-dir*/Finance
-                         /Taxes
-                           /2015
-                           /2016
-                         /Insurance
-                           /Car
-                           /Home
-                         /Work
-                           /Expenses
-                           /2016-FOSDEM
-                           /20170102-NYC
-                           /20170202-SFO
-                         /Medical
-                           /Receipts
-                           /2016
-                           /2017
-                         /Utilities
-                           /Mobile
-                           /Electricity
+```lisp
+*paperless-root-dir*/Finance
+                       /Taxes
+                         /2015
+                         /2016
+                       /Insurance
+                         /Car
+                         /Home
+                       /Work
+                         /Expenses
+                         /2016-FOSDEM
+                         /20170102-NYC
+                         /20170202-SFO
+                       /Medical
+                         /Receipts
+                         /2016
+                         /2017
+                       /Utilities
+                         /Mobile
+                         /Electricity
+```
 
 At the time of this writing, the author's directory tree contains over
 620 folders.
