@@ -30,7 +30,7 @@ Under `*paperless-root-dir*`, create a hierarchy of directories that
 makes sense for you.  For example, you might create directories to
 sort documents like so:
 
-```lisp
+```
 *paperless-root-dir*/Finance
                        /Taxes
                          /2015
