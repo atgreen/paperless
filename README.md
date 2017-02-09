@@ -1,9 +1,12 @@
-# paperless.el
-Emacs assisted PDF document filing
+# paperless.el - Emacs assisted PDF document filing
 
 You've just scanned a stack of papers that have be cluttering up your
-desk.  Now what?  Paperless-mode is an Emacs major mode to assist with
-filing scanned documents into a tree of folders.
+desk.  Now what?  Paperless mode is an Emacs major mode designed to
+assist with filing scanned documents into a tree of folders.
+
+Paperless mode provides PDF document previews, ido-based target
+directory completion, a simple batch filing commands designed to
+simplify and the sorting and filing of all of you scanned documents.
 
 Here's how it works...
 
@@ -57,7 +60,7 @@ At the time of this writing, the author's directory tree contains over
 
 ## Step 3
 
-WIP.  Load and run (paperless).  Use `f`, `d` and `x` keys. 
+WIP.  Load and run (paperless).  Use `[SPC]`, `f`, `d` and `x` keys. 
 
 ## Installation
 
