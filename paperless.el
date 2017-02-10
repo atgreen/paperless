@@ -1,4 +1,10 @@
-; paperless.el -- Copyright (c) 2017 Anthony Green
+;;; paperless.el --- A major mode for sorting and filing PDF documents
+
+;; Copyright (c) 2017 Anthony Green
+
+;; Author: Anthony Green <green@moxielogic.com>
+;; URL: http://github.com/atgreen/paperless
+;; Version: 1.0
 
 ;; Redistribution and use in source and binary forms, with or without
 ;; modification, are permitted provided that the following conditions
@@ -31,7 +37,7 @@
 (defun paperless ()
   "File directory contents."
   (interactive)
-  (setq paperless/table-contents
+  (setq paperless--table-contents
 	(mapcar
 	 (lambda (i)
 	   (list i (vector "" (file-name-nondirectory i) "")))
@@ -39,7 +45,7 @@
   (pop-to-buffer (concat "*Paperless* - " *paperless-capture-dir*))
   ;; Recursively build the list of destination directories, but don't
   ;; include hidden directories.
-  (setq paperless/directory-list
+  (setq paperless--directory-list
 	(cl-remove-if
 	 (lambda (s)
 	   (s-contains? "/." s))
@@ -59,21 +65,21 @@
   (mapcar
    (lambda (i)
      (setf (elt (cadr i) 0) ""))
-   paperless/table-contents)
-  (setf (elt (cadr (assoc (tabulated-list-get-id) paperless/table-contents)) 0) "*")
+   paperless--table-contents)
+  (setf (elt (cadr (assoc (tabulated-list-get-id) paperless--table-contents)) 0) "*")
   (tabulated-list-print t))
 
 (defun paperless-file ()
   (interactive)
-  (let ((new-dir (ido-completing-read "File destination: " (paperless/dirtree)))
-	(vctr (cadr (assoc (tabulated-list-get-id) paperless/table-contents))))
+  (let ((new-dir (ido-completing-read "File destination: " (paperless--dirtree)))
+	(vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
     (setf (elt vctr 2) new-dir))
   (tabulated-list-print t))
 
 (defun paperless-rename ()
   (interactive)
   (let ((new-name (completing-read "New name: " nil))
-	(vctr (cadr (assoc (tabulated-list-get-id) paperless/table-contents))))
+	(vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
     (setf (elt vctr 1) (if (file-name-extension new-name)
 			   new-name
 			 (concat new-name ".pdf"))))
@@ -90,22 +96,22 @@
 		(progn
 		  (rename-file (car i) (concat *paperless-root* "/" (elt vctr 2) "/" (elt vctr 1)))
 		  (car i)))))
-	  paperless/table-contents)))
+	  paperless--table-contents)))
     (mapcar
      (lambda (i)
        (if (not (null i))
-	   (setq paperless/table-contents (assq-delete-all i paperless/table-contents))))
+	   (setq paperless--table-contents (assq-delete-all i paperless--table-contents))))
      delete-list)
     (tabulated-list-print t)))
 
-(defun paperless/table-entries ()
+(defun paperless--table-entries ()
   "Make the entry table for the list."
-  paperless/table-contents)
+  paperless--table-contents)
 
 (define-derived-mode paperless-mode tabulated-list-mode "Paperless Filing"
   "Major mode for filing a list of PDF documents."
   (setq tabulated-list-format [(" " 1 nil)("Document" 30 nil)("Destination" 20 nil)])
-  (setq tabulated-list-entries 'paperless/table-entries)
+  (setq tabulated-list-entries 'paperless--table-entries)
   (setq tabulated-list-padding 2)
   (tabulated-list-init-header))
 
@@ -117,7 +123,9 @@
 	(define-key map "x" 'paperless-execute)
 	map))
 
-(defun paperless/dirtree ()
-  paperless/directory-list)
+(defun paperless--dirtree ()
+  paperless--directory-list)
 
 (provide 'paperless)
+
+;;; paperless.el ends here
