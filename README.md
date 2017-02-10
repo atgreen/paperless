@@ -63,16 +63,27 @@ At the time of this writing, the author's directory tree contains over
 
 ## Step 3
 
-Load and run (paperless) and you'll be presented with a list of PDF
-files in `*paperless-capture-dir*`.  Use the `[SPC]` key to open PDF
-preview buffers.  Use the `r` key to rename the file.  If you omit a
-filename extention, paperless will append ".pdf" to your new filename.
-Use the `f` key to select the destination directory.  Files aren't
-renamed or moved until you select the `x` key.
+Once loaded, start paperless with `M-x paperless` and you'll be
+presented with a list of PDF files in `*paperless-capture-dir*`.  Use
+the `[SPC]` key to open PDF preview buffers.  Use the `r` key to
+rename the file.  If you omit a filename extention, paperless will
+append ".pdf" to your new filename.  Use the `f` key to select the
+destination directory.  Files aren't renamed or moved until you select
+the `x` key.
 
 ## Installation
 
-TBD
+Simply download this package to your local filesystem, and add
+something like the following to your ~/.emacs/init.el:
+
+```lisp
+(autoload 'paperless "paperless" "A major mode for filing PDFs" t)
+(add-to-list 'load-path
+	     (expand-file-name "/home/green/git/paperless/"))
+```
+
+Don't forget to change load path, or to set `*paperless-capture-dir*`
+and `*paperless-root-dir*` as per above.
 
 ## Licensing
 
