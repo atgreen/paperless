@@ -5,6 +5,8 @@ your desk.  Now what?  Paperless mode is an Emacs major mode designed
 to assist with the filing of scanned documents into a hierarchy of
 folders.
 
+![alt text](paperless-shot.png "Screenshot of paperless mode")
+
 Paperless mode provides PDF document previews, ido-based target
 directory completion, and simple batch filing commands designed to
 simplify and speed the filing of all of your scanned documents.
