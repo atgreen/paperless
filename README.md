@@ -49,13 +49,13 @@ sort documents like so:
                          /2016-FOSDEM
                          /20170102-NYC
                          /20170202-SFO
-                       /Medical
-                         /Receipts
+                    /Medical
+                       /Receipts
                          /2016
                          /2017
-                       /Utilities
-                         /Mobile
-                         /Electricity
+                    /Utilities
+                       /Mobile
+                       /Electricity
 ```
 
 At the time of this writing, the author's directory tree contains over
