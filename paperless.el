@@ -29,9 +29,15 @@
 ;; (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 ;; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+;;; Commentary:
+;; 
+
 (require 'f)
 (require 's)
 (require 'cl-lib)
+
+;;; Code:
 
 ;;;###autoload
 (defun paperless ()
@@ -54,6 +60,7 @@
   (tabulated-list-print t))
 
 (defun paperless-display ()
+  "Open a preview display for the current document."
   (interactive)
   (save-selected-window
     (let ((filename (tabulated-list-get-id)))
@@ -70,6 +77,7 @@
   (tabulated-list-print t))
 
 (defun paperless-file ()
+  "Select the directory in which to file the current document."
   (interactive)
   (let ((new-dir (ido-completing-read "File destination: " (paperless--dirtree)))
 	(vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
@@ -77,6 +85,7 @@
   (tabulated-list-print t))
 
 (defun paperless-rename ()
+  "Rename the current document."
   (interactive)
   (let ((new-name (completing-read "New name: " nil))
 	(vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
@@ -86,6 +95,7 @@
   (tabulated-list-print t))
 
 (defun paperless-execute ()
+  "Batch execute all pending document processing."
   (interactive)
   (let ((delete-list
 	 (mapcar
@@ -124,6 +134,7 @@
 	map))
 
 (defun paperless--dirtree ()
+  "Return the cached list of target directories."
   paperless--directory-list)
 
 (provide 'paperless)
