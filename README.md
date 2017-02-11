@@ -1,3 +1,5 @@
+[![MELPA](https://melpa.org/packages/paperless-badge.svg)](https://melpa.org/#/paperless) [![Build Status](https://travis-ci.org/atgreen/paperless.svg?branch=master)](https://travis-ci.org/atgreen/paperless)
+
 # paperless.el - Emacs assisted PDF document filing
 
 You've just scanned a stack of papers that have been cluttering up
