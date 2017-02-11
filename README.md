@@ -93,3 +93,4 @@ Copyright (C) 2016 by Anthony Green
 
 Paperless is provided under the terms of the 3-clause BSD license.
 See paperless.el for details.
+
