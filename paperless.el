@@ -104,7 +104,7 @@
 	      (if (= (length (elt vctr 2)) 0)
 		  nil
 		(progn
-		  (rename-file (car i) (concat *paperless-root-dir* "/" (elt vctr 2) "/" (elt vctr 1)))
+		  (rename-file (car i) (concat (elt vctr 2) "/" (elt vctr 1)))
 		  (car i)))))
 	  paperless--table-contents)))
     (mapcar
