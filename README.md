@@ -1,6 +1,6 @@
 [![MELPA](https://melpa.org/packages/paperless-badge.svg)](https://melpa.org/#/paperless) [![Build Status](https://travis-ci.org/atgreen/paperless.svg?branch=master)](https://travis-ci.org/atgreen/paperless)
 
-# paperless.el - Emacs assisted PDF document filing
+## paperless.el - Emacs assisted PDF document filing
 
 You've just scanned a stack of papers that have been cluttering up
 your desk.  Now what?  Paperless mode is an Emacs major mode designed
@@ -15,13 +15,13 @@ simplify and speed the filing of all of your scanned documents.
 
 Here's how it works...
 
-## Step 1
+### Step 1
 
 Scan your documents and dump them into a holding directory.  Set the
 variable `paperless-capture-directory` to reference this directory.
 Use `M-x customize-variable` to set this string.
 
-## Step 2
+### Step 2
 
 Tell paperless-mode where to file the documents by setting
 `paperless-root-directory` with `M-x customize-variable`, or you can
@@ -62,7 +62,7 @@ sort documents like so:
 At the time of this writing, the author's directory tree contains over
 620 folders.
 
-## Step 3
+### Step 3
 
 Once loaded, start paperless with `M-x paperless` and you'll be
 presented with a list of PDF files in `paperless-capture-directory`.
@@ -72,7 +72,7 @@ append ".pdf" to your new filename.  Use the `f` key to select the
 destination directory.  Files aren't renamed or moved until you select
 the `x` key.
 
-## Installation
+### Installation
 
 Simply download this package to your local filesystem, and add
 something like the following to your ~/.emacs/init.el:
@@ -87,7 +87,7 @@ Don't forget to change load path, or to set
 `paperless-capture-directory` and `paperless-root-directory` as per
 above.
 
-## Licensing
+### Licensing
 
 Copyright (C) 2016 by Anthony Green
 
