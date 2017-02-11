@@ -22,7 +22,14 @@ Use `M-x customize-variable` to set this string.
 ## Step 2
 
 Tell paperless-mode where to file the documents by setting
-`paperless-root-directory` with `M-x customize-variable`.
+`paperless-root-directory` with `M-x customize-variable`, or you can
+set both variables in your `~/.emacs/init.el` like so:
+
+```lisp
+(custom-set-variables
+ '(paperless-capture-directory "/home/green/CAPTURE")
+ '(paperless-root-directory "/home/green/Documents"))
+```
 
 Under `paperless-root-directory`, create a hierarchy of directories that
 makes sense for you.  For example, you might create directories to
