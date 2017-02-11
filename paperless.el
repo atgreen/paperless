@@ -1,10 +1,16 @@
-;;; paperless.el --- A major mode for sorting and filing PDF documents
+;;; paperless.el --- A major mode for sorting and filing PDF documents.
 
 ;; Copyright (c) 2017 Anthony Green
 
 ;; Author: Anthony Green <green@moxielogic.com>
 ;; URL: http://github.com/atgreen/paperless
-;; Version: 1.0
+;; Version: 1.1
+;; Keywords: pdf, convenience
+;; Package-Requires: ((f "0.19.0") (s "1.10.0") (cl-lib "0.6.1"))
+
+;; This file is NOT part of GNU Emacs.
+
+;;; License:
 
 ;; Redistribution and use in source and binary forms, with or without
 ;; modification, are permitted provided that the following conditions
@@ -29,33 +35,52 @@
 ;; (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 ;; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
-;;; Commentary:
-;; 
+;;; Code:
 
 (require 'f)
 (require 's)
 (require 'cl-lib)
 
-;;; Code:
+(defgroup paperless nil
+  "A group for paperless customtizations."
+  :group 'applications
+  :prefix "paperless-"
+  )
+
+(defcustom paperless-capture-directory nil
+  "The directory in which paperless will look for PDF documents to file."
+  :type '(directory)
+  :group 'paperless)
+
+(defcustom paperless-root-directory nil
+  "The root of a directory hierarchy in which to file documents."
+  :type '(directory)
+  :group 'paperless)
+
+(defvar paperless--table-contents)
+(defvar paperless--directory-list)
 
 ;;;###autoload
 (defun paperless ()
   "File directory contents."
   (interactive)
+  (if (null paperless-capture-directory)
+      (error "Set paperless-capture-directory with M-x customize-variable"))
+  (if (null paperless-root-directory)
+      (error "Set paperless-root-directory with M-x customize-variable"))
   (setq paperless--table-contents
 	(mapcar
 	 (lambda (i)
 	   (list i (vector "" (file-name-nondirectory i) "")))
-	 (directory-files *paperless-capture-dir* t ".*pdf")))
-  (pop-to-buffer (concat "*Paperless* - " *paperless-capture-dir*))
+	 (directory-files paperless-capture-directory t ".*pdf")))
+  (pop-to-buffer (concat "*Paperless* - " paperless-capture-directory))
   ;; Recursively build the list of destination directories, but don't
   ;; include hidden directories.
   (setq paperless--directory-list
 	(cl-remove-if
 	 (lambda (s)
 	   (s-contains? "/." s))
-	 (f-directories *paperless-root-dir* nil t)))
+	 (f-directories paperless-root-directory nil t)))
   (paperless-mode)
   (tabulated-list-print t))
 
@@ -67,9 +92,9 @@
       (switch-to-buffer-other-window "*Paperless Preview*")
       (setq buffer-read-only nil)
       (erase-buffer)
-      (insert-file filename)
+      (insert-file-contents filename)
       (doc-view-mode)))
-  (mapcar
+  (mapc
    (lambda (i)
      (setf (elt (cadr i) 0) ""))
    paperless--table-contents)
@@ -107,7 +132,7 @@
 		  (rename-file (car i) (concat (elt vctr 2) "/" (elt vctr 1)))
 		  (car i)))))
 	  paperless--table-contents)))
-    (mapcar
+    (mapc
      (lambda (i)
        (if (not (null i))
 	   (setq paperless--table-contents (assq-delete-all i paperless--table-contents))))

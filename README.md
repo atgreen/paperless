@@ -16,46 +16,38 @@ Here's how it works...
 ## Step 1
 
 Scan your documents and dump them into a holding directory.  Set the
-variable `*paperless-capture-dir*` to reference this directory.  For
-instance, my ~/.emacs/init.el file includes:
-
-```lisp
-(setq *paperless-capture-dir* "/home/green/TOL/CAPTURE")
-```
+variable `paperless-capture-directory` to reference this directory.
+Use `M-x customize-variable` to set this string.
 
 ## Step 2
 
 Tell paperless-mode where to file the documents by setting
-`*paperless-root-dir*`, like so:
+`paperless-root-directory` with `M-x customize-variable`.
 
-```lisp
-(setq *paperless-root-dir* "/home/green/Documents")
-```
-
-Under `*paperless-root-dir*`, create a hierarchy of directories that
+Under `paperless-root-directory`, create a hierarchy of directories that
 makes sense for you.  For example, you might create directories to
 sort documents like so:
 
 ```
-*paperless-root-dir*/Finance
-                       /Taxes
-                         /2015
-                         /2016
-                       /Insurance
-                         /Car
-                         /Home
-                       /Work
-                         /Expenses
-                         /2016-FOSDEM
-                         /20170102-NYC
-                         /20170202-SFO
-                    /Medical
-                       /Receipts
-                         /2016
-                         /2017
-                    /Utilities
-                       /Mobile
-                       /Electricity
+[paperless-root-directory]/Finance
+                             /Taxes
+                                /2015
+                                /2016
+                             /Insurance
+                                /Car
+                                /Home
+                             /Work
+                                /Expenses
+                                   /2016-FOSDEM
+                                   /20170102-NYC
+                                   /20170202-SFO
+                          /Medical
+                             /Receipts
+                                /2016
+                                /2017
+                          /Utilities
+                             /Mobile
+                             /Electricity
 ```
 
 At the time of this writing, the author's directory tree contains over
@@ -64,8 +56,8 @@ At the time of this writing, the author's directory tree contains over
 ## Step 3
 
 Once loaded, start paperless with `M-x paperless` and you'll be
-presented with a list of PDF files in `*paperless-capture-dir*`.  Use
-the `[SPC]` key to open PDF preview buffers.  Use the `r` key to
+presented with a list of PDF files in `paperless-capture-directory`.
+Use the `[SPC]` key to open PDF preview buffers.  Use the `r` key to
 rename the file.  If you omit a filename extention, paperless will
 append ".pdf" to your new filename.  Use the `f` key to select the
 destination directory.  Files aren't renamed or moved until you select
@@ -82,8 +74,9 @@ something like the following to your ~/.emacs/init.el:
 	     (expand-file-name "/home/green/git/paperless/"))
 ```
 
-Don't forget to change load path, or to set `*paperless-capture-dir*`
-and `*paperless-root-dir*` as per above.
+Don't forget to change load path, or to set
+`paperless-capture-directory` and `paperless-root-directory` as per
+above.
 
 ## Licensing
 
