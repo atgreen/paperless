@@ -11,8 +11,8 @@ before_install:
   - make -f Makefile.travis before_install
 
 install:
-  - make -f Makefile.travis install
+  - PATH=~/.cask/bin:$PATH make -f Makefile.travis install
 
 script:
   - emacs --version
-  - make -f Makefile.travis script
+  - PATH=~/.cask/bin:$PATH make -f Makefile.travis script
