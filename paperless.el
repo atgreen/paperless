@@ -144,13 +144,7 @@
   "Make the entry table for the list."
   paperless--table-contents)
 
-(define-derived-mode paperless-mode tabulated-list-mode "Paperless Filing"
-  "Major mode for filing a list of PDF documents."
-  (setq tabulated-list-format [(" " 1 nil)("Document" 30 nil)("Destination" 20 nil)])
-  (setq tabulated-list-entries 'paperless--table-entries)
-  (setq tabulated-list-padding 2)
-  (tabulated-list-init-header))
-
+;; Wrappers around doc-view commands...
 (defun paperless-doc-view-enlarge (factor)
   "Enlarge the document by FACTOR."
   (interactive (list doc-view-shrink-factor))
@@ -171,6 +165,13 @@
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
     (doc-view-scale-reset)))
+
+(define-derived-mode paperless-mode tabulated-list-mode "Paperless Filing"
+  "Major mode for filing a list of PDF documents."
+  (setq tabulated-list-format [(" " 1 nil)("Document" 30 nil)("Destination" 20 nil)])
+  (setq tabulated-list-entries 'paperless--table-entries)
+  (setq tabulated-list-padding 2)
+  (tabulated-list-init-header))
 
 (setq paperless-mode-map
       (let ((map (make-sparse-keymap)))
