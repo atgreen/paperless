@@ -6,7 +6,7 @@
 ;; URL: http://github.com/atgreen/paperless
 ;; Version: 1.1
 ;; Keywords: pdf, convenience
-;; Package-Requires: ((f "0.19.0") (s "1.10.0") (cl-lib "0.6.1"))
+;; Package-Requires: ((emacs "24.4") (f "0.19.0") (s "1.10.0") (cl-lib "0.6.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
