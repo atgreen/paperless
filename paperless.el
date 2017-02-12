@@ -40,6 +40,7 @@
 (require 'f)
 (require 's)
 (require 'cl-lib)
+(require 'doc-view)
 
 (defgroup paperless nil
   "A group for paperless customtizations."
