@@ -150,12 +150,40 @@
   (setq tabulated-list-padding 2)
   (tabulated-list-init-header))
 
+(defun paperless-doc-view-enlarge (factor)
+  "Enlarge the document by FACTOR."
+  (interactive (list doc-view-shrink-factor))
+  (save-selected-window
+    (switch-to-buffer-other-window "*Paperless Preview*")
+    (doc-view-enlarge factor)))
+
+(defun paperless-doc-view-shrink (factor)
+  "Shrink the document."
+  (interactive (list doc-view-shrink-factor))
+  (save-selected-window
+    (switch-to-buffer-other-window "*Paperless Preview*")
+    (doc-view-shrink factor)))
+
+(defun paperless-doc-view-scale-reset ()
+  "Reset the document size/zoom level to the initial one."
+  (interactive)
+  (save-selected-window
+    (switch-to-buffer-other-window "*Paperless Preview*")
+    (doc-view-scale-reset)))
+
 (setq paperless-mode-map
       (let ((map (make-sparse-keymap)))
 	(define-key map (kbd "SPC") 'paperless-display)
 	(define-key map "f" 'paperless-file)
 	(define-key map "r" 'paperless-rename)
 	(define-key map "x" 'paperless-execute)
+	
+	;; Zoom in/out.
+	(define-key map "+" 'paperless-doc-view-enlarge)
+	(define-key map "=" 'paperless-doc-view-enlarge)
+	(define-key map "-" 'paperless-doc-view-shrink)
+	(define-key map "0" 'paperless-doc-view-scale-reset)
+
 	map))
 
 (defun paperless--dirtree ()

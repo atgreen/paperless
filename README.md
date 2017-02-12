@@ -1,6 +1,6 @@
 [![MELPA](https://melpa.org/packages/paperless-badge.svg)](https://melpa.org/#/paperless) [![Build Status](https://travis-ci.org/atgreen/paperless.svg?branch=master)](https://travis-ci.org/atgreen/paperless)
 
-## paperless.el - Emacs assisted PDF document filing
+## Paperless - Emacs assisted PDF document filing
 
 You've just scanned a stack of papers that have been cluttering up
 your desk.  Now what?  Paperless mode is an Emacs major mode designed
@@ -66,11 +66,12 @@ At the time of this writing, the author's directory tree contains over
 
 Once loaded, start paperless with `M-x paperless` and you'll be
 presented with a list of PDF files in `paperless-capture-directory`.
-Use the `[SPC]` key to open PDF preview buffers.  Use the `r` key to
-rename the file.  If you omit a filename extention, paperless will
-append ".pdf" to your new filename.  Use the `f` key to select the
-destination directory.  Files aren't renamed or moved until you select
-the `x` key.
+Use the `[SPC]` key to open PDF preview buffers.  The `-`, `+`, `=`
+and `0` keys will adjust the scale of the preview, just as they do in
+DocView mode.  Use the `r` key to rename the file.  If you omit a
+filename extention, paperless will append ".pdf" to your new filename.
+Use the `f` key to select the destination directory.  Files aren't
+renamed or moved until you select the `x` key.
 
 ### Installation
 
