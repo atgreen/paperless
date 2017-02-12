@@ -75,8 +75,12 @@ renamed or moved until you select the `x` key.
 
 ### Installation
 
-Simply download this package to your local filesystem, and add
-something like the following to your ~/.emacs/init.el:
+Paperless requires Emacs 24.4, and is available in the
+[MELPA](https://melpa.org) package repository.
+
+To install from source, simply download this package to your local
+filesystem, and add something like the following to your
+~/.emacs/init.el:
 
 ```lisp
 (autoload 'paperless "paperless" "A major mode for filing PDFs" t)

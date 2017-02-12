@@ -16,3 +16,4 @@ install:
 script:
   - emacs --version
   - PATH=~/.cask/bin:$PATH make -f Makefile.travis script
+
