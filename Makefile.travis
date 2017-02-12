@@ -1,7 +1,7 @@
 .PHONY: prepare-emacs-24 prepare-emacs-git prepare-emacs-24.3 prepare-emacs-24.4 prepare-emacs-24.5 \
-        prepare-emacs prepare-cask before_install install script
+        prepare-emacs-25.1 prepare-emacs prepare-cask before_install install script
 
-prepare-emacs-24.3 prepare-emacs-24.4 prepare-emacs-24.5:
+prepare-emacs-24.3 prepare-emacs-24.4 prepare-emacs-24.5 prepare-emacs-25.1:
 	curl -o /tmp/$(EMACS_TARGET).tar.gz "https://ftp.gnu.org/gnu/emacs/$(EMACS_TARGET).tar.gz"
 	tar xzf /tmp/$(EMACS_TARGET).tar.gz -C /tmp
 	mv /tmp/$(EMACS_TARGET) "/tmp/emacs"
