@@ -68,10 +68,10 @@ Once loaded, start paperless with `M-x paperless` and you'll be
 presented with a list of PDF files in `paperless-capture-directory`.
 Use the `[SPC]` key to open PDF preview buffers.  The `-`, `+`, `=`
 and `0` keys will adjust the scale of the preview, just as they do in
-DocView mode.  Use the `r` key to rename the file.  If you omit a
-filename extention, paperless will append ".pdf" to your new filename.
-Use the `f` key to select the destination directory.  Files aren't
-renamed or moved until you select the `x` key.
+DocView or PDFView mode.  Use the `r` key to rename the file.  If you
+omit a filename extention, paperless will append ".pdf" to your new
+filename.  Use the `f` key to select the destination directory.  Files
+aren't renamed or moved until you select the `x` key.
 
 ### Installation
 
@@ -88,9 +88,12 @@ filesystem, and add something like the following to your
 	     (expand-file-name "/home/green/git/paperless/"))
 ```
 
-Don't forget to change load path, or to set
-`paperless-capture-directory` and `paperless-root-directory` as per
-above.
+Don't forget to set `paperless-capture-directory` and
+`paperless-root-directory` as per above.
+
+Paperless requires DocView mode, which currently ships with GNU Emacs,
+however it will always prefer to use PDF Tools if you have that
+installed.
 
 ### Licensing
 

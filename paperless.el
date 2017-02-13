@@ -41,6 +41,7 @@
 (require 's)
 (require 'cl-lib)
 (require 'doc-view)
+(require 'pdf-tools)
 
 (defgroup paperless nil
   "A group for paperless customtizations."
@@ -94,7 +95,10 @@
       (setq buffer-read-only nil)
       (erase-buffer)
       (insert-file-contents filename)
-      (doc-view-mode)))
+      (if (fboundp 'pdf-view-mode)
+	  (pdf-view-mode)
+	(doc-view-mode))
+      (pdf-view-mode)))
   (mapc
    (lambda (i)
      (setf (elt (cadr i) 0) ""))
@@ -150,21 +154,27 @@
   (interactive (list doc-view-shrink-factor))
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
-    (doc-view-enlarge factor)))
+    (if (fboundp 'pdf-view-enlarge)
+	(pdf-view-enlarge factor)
+      (doc-view-enlarge factor))))
 
 (defun paperless-doc-view-shrink (factor)
   "Shrink the document."
   (interactive (list doc-view-shrink-factor))
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
-    (doc-view-shrink factor)))
+    (if (fboundp 'pdf-view-enlarge)
+	(pdf-view-shrink factor)
+      (doc-view-shrink factor))))
 
 (defun paperless-doc-view-scale-reset ()
   "Reset the document size/zoom level to the initial one."
   (interactive)
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
-    (doc-view-scale-reset)))
+    (if (fboundp 'pdf-view-scale-reset)
+	(pdf-view-scale-reset)
+      (doc-view-scale-reset))))
 
 (define-derived-mode paperless-mode tabulated-list-mode "Paperless Filing"
   "Major mode for filing a list of PDF documents."
