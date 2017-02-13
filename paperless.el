@@ -41,7 +41,6 @@
 (require 's)
 (require 'cl-lib)
 (require 'doc-view)
-(require 'pdf-tools)
 
 (defgroup paperless nil
   "A group for paperless customtizations."
