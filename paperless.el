@@ -97,8 +97,7 @@
       (insert-file-contents filename)
       (if (fboundp 'pdf-view-mode)
 	  (pdf-view-mode)
-	(doc-view-mode))
-      (pdf-view-mode)))
+	(doc-view-mode))))
   (mapc
    (lambda (i)
      (setf (elt (cadr i) 0) ""))
