@@ -91,8 +91,8 @@ filesystem, and add something like the following to your
 Don't forget to set `paperless-capture-directory` and
 `paperless-root-directory` as per above.
 
-Paperless requires DocView mode, which currently ships with GNU Emacs,
-however it will always prefer to use PDF Tools if you have that
+Paperless requires [DocView](https://www.gnu.org/software/emacs/manual/html_node/emacs/Document-View.html) mode, which currently ships with GNU Emacs,
+however it will always prefer to use [PDF Tools](https://github.com/politza/pdf-tools) if you have that
 installed.
 
 ### Licensing
