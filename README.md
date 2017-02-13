@@ -65,7 +65,7 @@ At the time of this writing, the author's directory tree contains over
 ### Step 3
 
 Once loaded, start paperless with `M-x paperless` and you'll be
-presented with a list of PDF files in `paperless-capture-directory`.
+presented with the list of PDF files in `paperless-capture-directory`.
 Use the `[SPC]` key to open PDF preview buffers.  The `-`, `+`, `=`
 and `0` keys will adjust the scale of the preview, just as they do in
 DocView or PDFView mode.  Use the `r` key to rename the file.  If you
