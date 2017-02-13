@@ -162,7 +162,7 @@
   (interactive (list doc-view-shrink-factor))
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
-    (if (fboundp 'pdf-view-enlarge)
+    (if (fboundp 'pdf-view-shrink)
 	(pdf-view-shrink factor)
       (doc-view-shrink factor))))
 
