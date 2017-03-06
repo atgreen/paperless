@@ -73,6 +73,14 @@ omit a filename extention, paperless will append ".pdf" to your new
 filename.  Use the `f` key to select the destination directory.  Files
 aren't renamed or moved until you select the `x` key.
 
+### Org Mode Integration
+
+Paperless features basic Org mode integration as well.  Org links
+stored while in paperless mode point to the appropriate target file
+location.  Be sure to `(require 'org-paperless)` to enable this
+feature.
+
+
 ### Installation
 
 Paperless requires Emacs 24.4, and is available in the
@@ -97,7 +105,7 @@ installed.
 
 ### Licensing
 
-Copyright (C) 2016 by Anthony Green
+Copyright (C) 2016, 2017 by Anthony Green
 
 Paperless is provided under the terms of the 3-clause BSD license.
 See paperless.el for details.
