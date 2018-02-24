@@ -118,7 +118,7 @@
 (defun paperless-file ()
   "Select the directory in which to file the current document."
   (interactive)
-  (let ((new-dir (completing-read "File destination: " (paperless--dirtree)))
+  (let ((new-dir (ido-completing-read "File destination: " (paperless--dirtree)))
 	(vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
     (setf (elt vctr 2) new-dir))
   (tabulated-list-print t))
