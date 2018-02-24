@@ -108,10 +108,17 @@
   (setf (elt (cadr (assoc (tabulated-list-get-id) paperless--table-contents)) 0) "*")
   (tabulated-list-print t))
 
+(defun paperless-delete ()
+  "Delete the current document."
+  (interactive)
+  (let ((vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
+    (setf (elt vctr 2) "[ DELETE ]"))
+  (tabulated-list-print t))
+
 (defun paperless-file ()
   "Select the directory in which to file the current document."
   (interactive)
-  (let ((new-dir (ido-completing-read "File destination: " (paperless--dirtree)))
+  (let ((new-dir (completing-read "File destination: " (paperless--dirtree)))
 	(vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
     (setf (elt vctr 2) new-dir))
   (tabulated-list-print t))
@@ -136,7 +143,9 @@
 	      (if (= (length (elt vctr 2)) 0)
 		  nil
 		(progn
-		  (rename-file (car i) (concat (elt vctr 2) "/" (elt vctr 1)))
+		  (if (string-equal (elt vctr 2) "[ TRASH ]")
+		      (move-file-to-trash (car i))
+		    (rename-file (car i) (concat (elt vctr 2) "/" (elt vctr 1))))
 		  (car i)))))
 	  paperless--table-contents)))
     (mapc
@@ -190,6 +199,7 @@
 	(define-key map (kbd "SPC") 'paperless-display)
 	(define-key map "f" 'paperless-file)
 	(define-key map "r" 'paperless-rename)
+	(define-key map "d" 'paperless-delete)
 	(define-key map "x" 'paperless-execute)
 	
 	;; Zoom in/out.
