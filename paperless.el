@@ -1,14 +1,18 @@
 ;;; paperless.el --- A major mode for sorting and filing PDF documents.
 
-;; Copyright (c) 2017 Anthony Green
+;; Copyright (c) 2017, 2018 Anthony Green
 
 ;; Author: Anthony Green <green@moxielogic.com>
 ;; URL: http://github.com/atgreen/paperless
 ;; Version: 1.1
 ;; Keywords: pdf, convenience
-;; Package-Requires: ((emacs "24.4") (f "0.19.0") (s "1.10.0") (cl-lib "0.6.1"))
+;; Package-Requires: ((emacs "24.4") (f "0.11.0") (s "1.10.0") (cl-lib "0.6.1"))
 
 ;; This file is NOT part of GNU Emacs.
+
+;;; Commentary:
+
+;; A tool for sorting and filing PDF documents.
 
 ;;; License:
 
@@ -115,7 +119,7 @@
 (defun paperless-rename ()
   "Rename the current document."
   (interactive)
-  (let ((new-name (completing-read "New name: " nil))
+  (let ((new-name (read-from-minibuffer "New name: "))
 	(vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
     (setf (elt vctr 1) (if (file-name-extension new-name)
 			   new-name
