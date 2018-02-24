@@ -70,8 +70,10 @@ Use the `[SPC]` key to open PDF preview buffers.  The `-`, `+`, `=`
 and `0` keys will adjust the scale of the preview, just as they do in
 DocView or PDFView mode.  Use the `r` key to rename the file.  If you
 omit a filename extention, paperless will append ".pdf" to your new
-filename.  Use the `f` key to select the destination directory.  Files
-aren't renamed or moved until you select the `x` key.
+filename.  Use the `f` key to select the destination directory.  Use
+the `d` key to mark the file for deletion.  Deletion always moves the
+file to the systems trash folder (emacs's `move-file-to-trash`).
+Files aren't renamed, moved or deleted until you select the `x` key.
 
 ### Org Mode Integration
 
