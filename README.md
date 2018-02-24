@@ -72,8 +72,10 @@ DocView or PDFView mode.  Use the `r` key to rename the file.  If you
 omit a filename extention, paperless will append ".pdf" to your new
 filename.  Use the `f` key to select the destination directory.  Use
 the `d` key to mark the file for deletion.  Deletion always moves the
-file to the system trash folder (emacs's `move-file-to-trash`).
-Files aren't renamed, moved or deleted until you select the `x` key.
+file to the system trash folder (emacs's `move-file-to-trash`).  Use
+the `g` key to rescan the directory hierarchy under
+`paperless-root-directory` for new or deleted folders.  Files aren't
+renamed, moved or deleted until you select the `x` key.
 
 ### Org Mode Integration
 
@@ -107,7 +109,7 @@ installed.
 
 ### Licensing
 
-Copyright (C) 2016, 2017 by Anthony Green
+Copyright (C) 2016, 2017, 2018 by Anthony Green
 
 Paperless is provided under the terms of the 3-clause BSD license.
 See paperless.el for details.
