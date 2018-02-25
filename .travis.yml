@@ -19,7 +19,6 @@ env:
   - EMACS_TARGET=emacs-git
 
 before_install:
-  - apt
   - make -f Makefile.travis before_install
 
 install:
