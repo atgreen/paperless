@@ -1,10 +1,16 @@
 language: emacs-lisp
-sudo: false
+
+# Emacs fails to build using the latest Trusty image on Travis
+# See https://github.com/travis-ci/travis-ci/issues/9073
+sudo: required
+dist: trusty
+group: deprecated-2017Q4
 
 env:
   - EMACS_TARGET=emacs-24.4
   - EMACS_TARGET=emacs-24.5
   - EMACS_TARGET=emacs-25.1
+  - EMACS_TARGET=emacs-25.3.1
   - EMACS_TARGET=emacs-git
 
 before_install:
