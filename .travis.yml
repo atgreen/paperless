@@ -10,7 +10,7 @@ addons:
   apt:
     packages:
     - gnutls-bin
-      
+
 env:
   - EMACS_TARGET=emacs-24.4
   - EMACS_TARGET=emacs-24.5
