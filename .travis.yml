@@ -9,7 +9,7 @@ group: deprecated-2017Q4
 addons:
   apt:
     packages:
-      - gnutls-bin
+    - gnutls-bin
       
 env:
   - EMACS_TARGET=emacs-24.4
