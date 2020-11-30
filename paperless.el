@@ -1,10 +1,10 @@
 ;;; paperless.el --- A major mode for sorting and filing PDF documents.
 
-;; Copyright (c) 2017, 2018 Anthony Green
+;; Copyright (c) 2017, 2018, 2020 Anthony Green
 
 ;; Author: Anthony Green <green@moxielogic.com>
 ;; URL: http://github.com/atgreen/paperless
-;; Version: 1.1
+;; Version: 1.2
 ;; Keywords: pdf, convenience
 ;; Package-Requires: ((emacs "24.4") (f "0.11.0") (s "1.10.0") (cl-lib "0.6.1"))
 
@@ -149,7 +149,7 @@
 	      (if (= (length (elt vctr 2)) 0)
 		  nil
 		(progn
-		  (if (string-equal (elt vctr 2) "[ TRASH ]")
+		  (if (string-equal (elt vctr 2) "[ DELETE ]")
 		      (move-file-to-trash (car i))
 		    (rename-file (car i) (concat (elt vctr 2) "/" (elt vctr 1))))
 		  (car i)))))
@@ -208,7 +208,7 @@
 	(define-key map "r" 'paperless-rename)
 	(define-key map "d" 'paperless-delete)
 	(define-key map "x" 'paperless-execute)
-	
+
 	;; Zoom in/out.
 	(define-key map "+" 'paperless-doc-view-enlarge)
 	(define-key map "=" 'paperless-doc-view-enlarge)
