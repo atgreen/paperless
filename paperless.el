@@ -77,7 +77,8 @@
 	(mapcar
 	 (lambda (i)
 	   (list i (vector "" (file-name-nondirectory i) "")))
-	 (directory-files paperless-capture-directory t ".*pdf")))
+	 (directory-files "./" t (concat "."(regexp-opt (append  '("pdf") image-file-name-extensions)) "\\b"))
+	 ))
   (pop-to-buffer (concat "*Paperless* - " paperless-capture-directory))
   (paperless-scan-directories)
   (paperless-mode)
@@ -90,12 +91,19 @@
     (let ((filename (tabulated-list-get-id)))
       (switch-to-buffer-other-window "*Paperless Preview*")
       (setq buffer-read-only nil)
+      (when (eq major-mode 'image-mode)
+	(fundamental-mode))
       (erase-buffer)
       (insert-file-contents filename)
-      (if (fboundp 'pdf-view-mode)
-	  (pdf-view-mode)
-	(doc-view-mode))))
-  (mapc
+      (cond ((string-match
+	      (concat "."(regexp-opt image-file-name-extensions) "\\b") filename)
+	     (image-mode))
+	    ((string-match ".pdf\\b" filename)
+	     (if (fboundp 'pdf-view-mode)
+		 (pdf-view-mode)
+	       (doc-view-mode))))
+      ))
+  (mapc 
    (lambda (i)
      (setf (elt (cadr i) 0) ""))
    paperless--table-contents)
@@ -166,32 +174,44 @@
   paperless--table-contents)
 
 ;; Wrappers around doc-view commands...
-(defun paperless-doc-view-enlarge (factor)
+(defun paperless-preview-enlarge (factor)
   "Enlarge the document by FACTOR."
   (interactive (list doc-view-shrink-factor))
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
-    (if (fboundp 'pdf-view-enlarge)
-	(pdf-view-enlarge factor)
-      (doc-view-enlarge factor))))
+    (cond ((eq major-mode 'image-mode)
+	   (image-increase-size factor))
+	  ((eq major-mode 'pdf-view-mode)
+	   (pdf-view-enlarge factor))
+	  ((eq major-mode 'doc-view-mode)
+	   (doc-view-enlarge factor))
+	  )))
 
-(defun paperless-doc-view-shrink (factor)
+(defun paperless-preview-shrink (factor)
   "Shrink the document."
   (interactive (list doc-view-shrink-factor))
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
-    (if (fboundp 'pdf-view-shrink)
-	(pdf-view-shrink factor)
-      (doc-view-shrink factor))))
+    (cond ((eq major-mode 'image-mode)
+	   (image-decreaze-size factor))
+	  ((eq major-mode 'pdf-view-mode)
+	   (pdf-view-shrink factor))
+	  ((eq major-mode 'doc-view-mode)
+	   (doc-view-shrink factor))
+	  )))
 
-(defun paperless-doc-view-scale-reset ()
+(defun paperless-preview-scale-reset ()
   "Reset the document size/zoom level to the initial one."
   (interactive)
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
-    (if (fboundp 'pdf-view-scale-reset)
-	(pdf-view-scale-reset)
-      (doc-view-scale-reset))))
+    (cond ((eq major-mode 'image-mode)
+	   (image-transform-reset))
+	  ((eq major-mode 'pdf-view-mode)
+	   (pdf-view-scale-reset))
+	  ((eq major-mode 'doc-view-mode)
+	   (doc-view-scale-reset))
+	  )))
 
 (define-derived-mode paperless-mode tabulated-list-mode "Paperless Filing"
   "Major mode for filing a list of PDF documents."
@@ -210,10 +230,10 @@
 	(define-key map "x" 'paperless-execute)
 
 	;; Zoom in/out.
-	(define-key map "+" 'paperless-doc-view-enlarge)
-	(define-key map "=" 'paperless-doc-view-enlarge)
-	(define-key map "-" 'paperless-doc-view-shrink)
-	(define-key map "0" 'paperless-doc-view-scale-reset)
+	(define-key map "+" 'paperless-preview-enlarge)
+	(define-key map "=" 'paperless-preview-enlarge)
+	(define-key map "-" 'paperless-preview-shrink)
+	(define-key map "0" 'paperless-preview-scale-reset)
 
 	map))
 
