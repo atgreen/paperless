@@ -1,6 +1,6 @@
 ;;; org-paperless.el --- org-mode integration for paperless
 
-;; Copyright (c) 2017 Anthony Green
+;; Copyright (c) 2017, 2023 Anthony Green
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -42,7 +42,7 @@
     (let ((vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
       (cond
        ((not (= (length (elt vctr 2)) 0))
-	(org-store-link-props
+	(org-link-store-props
 	 :type "file"
 	 :link (concat (elt vctr 2) "/" (elt vctr 1))))
        (t (error "Set destination directory before storing link")))))))

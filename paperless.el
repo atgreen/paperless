@@ -1,12 +1,12 @@
 ;;; paperless.el --- A major mode for sorting and filing PDF documents.
 
-;; Copyright (c) 2017, 2018, 2020 Anthony Green
+;; Copyright (c) 2017, 2018, 2020, 2023 Anthony Green
 
 ;; Author: Anthony Green <green@moxielogic.com>
 ;; URL: http://github.com/atgreen/paperless
 ;; Version: 1.2
 ;; Keywords: pdf, convenience
-;; Package-Requires: ((emacs "24.4") (f "0.11.0") (s "1.10.0") (cl-lib "0.6.1"))
+;; Package-Requires: ((emacs "29.1") (f "0.11.0") (s "1.10.0") (cl-lib "0.6.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -103,7 +103,7 @@
 		 (pdf-view-mode)
 	       (doc-view-mode))))
       ))
-  (mapc 
+  (mapc
    (lambda (i)
      (setf (elt (cadr i) 0) ""))
    paperless--table-contents)
@@ -206,7 +206,7 @@
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
     (cond ((eq major-mode 'image-mode)
-	   (image-transform-reset))
+	   (image-transform-reset-to-initial))
 	  ((eq major-mode 'pdf-view-mode)
 	   (pdf-view-scale-reset))
 	  ((eq major-mode 'doc-view-mode)
