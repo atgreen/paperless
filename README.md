@@ -1,4 +1,4 @@
-[![MELPA](https://melpa.org/packages/paperless-badge.svg)](https://melpa.org/#/paperless) [![Build Status](https://travis-ci.org/atgreen/paperless.svg?branch=master)](https://travis-ci.org/atgreen/paperless)
+[![MELPA](https://melpa.org/packages/paperless-badge.svg)](https://melpa.org/#/paperless)
 
 ## Paperless - Emacs assisted PDF document filing
 
@@ -109,8 +109,7 @@ installed.
 
 ### Licensing
 
-Copyright (C) 2016, 2017, 2018 by Anthony Green
+Copyright (C) 2016, 2017, 2018, 2020, 2023, 2024 by Anthony Green
 
 Paperless is provided under the terms of the 3-clause BSD license.
 See paperless.el for details.
-

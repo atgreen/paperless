@@ -6,7 +6,7 @@
 ;; Maintainer: Anthony Green <green@moxielogic.com>
 ;; URL: https://github.com/atgreen/paperless
 ;; Version: 1.3.0
-;; Package-Requires: ((emacs "29.1") (f "0.11.0") (s "1.10.0") (cl-lib "0.7.1") (pdf-tools "1.1.0"))
+;; Package-Requires: ((emacs "29.1") (f "0.11.0") (s "1.10.0") (cl-lib "0.7.1"))
 ;; Keywords: pdf, convenience
 
 ;; This file is NOT part of GNU Emacs.
@@ -46,7 +46,6 @@
 (require 's)
 (require 'cl-lib)
 (require 'doc-view)
-(require 'pdf-tools)
 
 (defgroup paperless nil
   "A group for paperless customtizations."
@@ -92,16 +91,16 @@
       (switch-to-buffer-other-window "*Paperless Preview*")
       (setq buffer-read-only nil)
       (when (eq major-mode 'image-mode)
-	(fundamental-mode))
+	      (fundamental-mode))
       (erase-buffer)
       (insert-file-contents filename)
       (cond ((string-match
-	      (concat "." (regexp-opt image-file-name-extensions) "\\b") filename)
-	     (image-mode))
-	    ((string-match ".pdf\\b" filename)
-	     (if (fboundp 'pdf-view-mode)
-		 (pdf-view-mode)
-	       (doc-view-mode))))))
+	            (concat "." (regexp-opt image-file-name-extensions) "\\b") filename)
+	           (image-mode))
+	          ((string-match ".pdf\\b" filename)
+	           (if (fboundp 'pdf-view-mode)
+		             (pdf-view-mode)
+	             (doc-view-mode))))))
   (mapc
    (lambda (i)
      (setf (elt (cadr i) 0) ""))
@@ -180,7 +179,7 @@
     (switch-to-buffer-other-window "*Paperless Preview*")
     (cond ((eq major-mode 'image-mode)
 	   (image-increase-size factor))
-	  ((eq major-mode 'pdf-view-mode)
+	  ((and (eq major-mode 'pdf-view-mode) (fboundp 'pdf-view-enlarge))
 	   (pdf-view-enlarge factor))
 	  ((eq major-mode 'doc-view-mode)
 	   (doc-view-enlarge factor)))))
@@ -192,7 +191,7 @@
     (switch-to-buffer-other-window "*Paperless Preview*")
     (cond ((eq major-mode 'image-mode)
 	   (image-decrease-size factor))
-	  ((eq major-mode 'pdf-view-mode)
+	  ((and (eq major-mode 'pdf-view-mode) (fboundp 'pdf-view-shrink))
 	   (pdf-view-shrink factor))
 	  ((eq major-mode 'doc-view-mode)
 	   (doc-view-shrink factor)))))
@@ -204,7 +203,7 @@
     (switch-to-buffer-other-window "*Paperless Preview*")
     (cond ((eq major-mode 'image-mode)
 	   (image-transform-reset-to-initial))
-	  ((eq major-mode 'pdf-view-mode)
+	  ((and (eq major-mode 'pdf-view-mode) (fboundp 'pdf-view-scale-reset))
 	   (pdf-view-scale-reset))
 	  ((eq major-mode 'doc-view-mode)
 	   (doc-view-scale-reset)))))

@@ -16,4 +16,3 @@
 (depends-on "f" "0.11.0")
 (depends-on "s" "1.10.0")
 (depends-on "cl-lib" "0.7.1")
-(depends-on "pdf-tools" "1.1.0")
