@@ -1,8 +1,12 @@
 ;;; org-paperless.el --- org-mode integration for paperless
 
-;; Copyright (c) 2017, 2023 Anthony Green
+;; Copyright (c) 2017, 2023, 2024 Anthony Green
 
 ;; This file is NOT part of GNU Emacs.
+
+;;; Commentary:
+
+;; Store links to filed documents.
 
 ;;; License:
 
@@ -32,11 +36,14 @@
 ;;; Code:
 
 (require 'org)
+(require 'paperless)
 
-(org-link-set-parameters "paperless" :store #'org-paperless-store-link)
+(defvar paperless--table-contents)
 
-(defun org-paperless-store-link ()
-  "Store a link to the filed document"
+(org-link-set-parameters "paperless" :store #'paperless--org-paperless-store-link)
+
+(defun paperless--org-paperless-store-link ()
+  "Store a link to the filed document."
   (cond
    ((eq major-mode 'paperless-mode)
     (let ((vctr (cadr (assoc (tabulated-list-get-id) paperless--table-contents))))
@@ -48,3 +55,5 @@
        (t (error "Set destination directory before storing link")))))))
 
 (provide 'org-paperless)
+
+;;; org-paperless.el ends here

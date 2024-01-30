@@ -1,12 +1,13 @@
-;;; paperless.el --- A major mode for sorting and filing PDF documents.
+;;; paperless.el --- A major mode for sorting and filing PDF documents
 
 ;; Copyright (c) 2017, 2018, 2020, 2023, 2024 Anthony Green
 
 ;; Author: Anthony Green <green@moxielogic.com>
-;; URL: http://github.com/atgreen/paperless
-;; Version: 1.2
+;; Maintainer: Anthony Green <green@moxielogic.com>
+;; URL: https://github.com/atgreen/paperless
+;; Version: 1.3.0
+;; Package-Requires: ((emacs "29.1") (f "0.11.0") (s "1.10.0") (cl-lib "0.7.1") (pdf-tools "1.1.0"))
 ;; Keywords: pdf, convenience
-;; Package-Requires: ((emacs "29.1") (f "0.11.0") (s "1.10.0") (cl-lib "0.6.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -45,12 +46,12 @@
 (require 's)
 (require 'cl-lib)
 (require 'doc-view)
+(require 'pdf-tools)
 
 (defgroup paperless nil
   "A group for paperless customtizations."
   :group 'applications
-  :prefix "paperless-"
-  )
+  :prefix "paperless-")
 
 (defcustom paperless-capture-directory nil
   "The directory in which paperless will look for PDF documents to file."
@@ -100,8 +101,7 @@
 	    ((string-match ".pdf\\b" filename)
 	     (if (fboundp 'pdf-view-mode)
 		 (pdf-view-mode)
-	       (doc-view-mode))))
-      ))
+	       (doc-view-mode))))))
   (mapc
    (lambda (i)
      (setf (elt (cadr i) 0) ""))
@@ -125,7 +125,7 @@
   (tabulated-list-print t))
 
 (defun paperless-scan-directories ()
-  "Scan target directory hierarchy"
+  "Scan target directory hierarchy."
   (interactive)
   (message "Scanning directories under %s" paperless-root-directory)
   ;; Recursively build the list of destination directories, but don't
@@ -183,21 +183,19 @@
 	  ((eq major-mode 'pdf-view-mode)
 	   (pdf-view-enlarge factor))
 	  ((eq major-mode 'doc-view-mode)
-	   (doc-view-enlarge factor))
-	  )))
+	   (doc-view-enlarge factor)))))
 
 (defun paperless-preview-shrink (factor)
-  "Shrink the document."
+  "Shrink the document by FACTOR."
   (interactive (list doc-view-shrink-factor))
   (save-selected-window
     (switch-to-buffer-other-window "*Paperless Preview*")
     (cond ((eq major-mode 'image-mode)
-	   (image-decreaze-size factor))
+	   (image-decrease-size factor))
 	  ((eq major-mode 'pdf-view-mode)
 	   (pdf-view-shrink factor))
 	  ((eq major-mode 'doc-view-mode)
-	   (doc-view-shrink factor))
-	  )))
+	   (doc-view-shrink factor)))))
 
 (defun paperless-preview-scale-reset ()
   "Reset the document size/zoom level to the initial one."
@@ -209,8 +207,7 @@
 	  ((eq major-mode 'pdf-view-mode)
 	   (pdf-view-scale-reset))
 	  ((eq major-mode 'doc-view-mode)
-	   (doc-view-scale-reset))
-	  )))
+	   (doc-view-scale-reset)))))
 
 (define-derived-mode paperless-mode tabulated-list-mode "Paperless Filing"
   "Major mode for filing a list of PDF documents."
