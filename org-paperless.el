@@ -1,4 +1,4 @@
-;;; org-paperless.el --- org-mode integration for paperless
+;;; org-paperless.el --- org-mode integration for paperless -*- lexical-binding: t; -*-
 
 ;; Copyright (c) 2017, 2023, 2024 Anthony Green
 

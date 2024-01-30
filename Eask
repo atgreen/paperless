@@ -1,5 +1,5 @@
 (package "paperless"
-         "1.3.1"
+         "1.3.2"
          "A major mode for sorting and filing PDF documents")
 
 (website-url "https://github.com/atgreen/paperless")
