@@ -5,7 +5,7 @@
 ;; Author: Anthony Green <green@moxielogic.com>
 ;; Maintainer: Anthony Green <green@moxielogic.com>
 ;; URL: https://github.com/atgreen/paperless
-;; Version: 1.3.0
+;; Version: 1.3.1
 ;; Package-Requires: ((emacs "29.1") (f "0.11.0") (s "1.10.0") (cl-lib "0.7.1"))
 ;; Keywords: pdf, convenience
 
