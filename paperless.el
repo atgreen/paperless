@@ -1,6 +1,6 @@
 ;;; paperless.el --- A major mode for sorting and filing PDF documents.
 
-;; Copyright (c) 2017, 2018, 2020, 2023 Anthony Green
+;; Copyright (c) 2017, 2018, 2020, 2023, 2024 Anthony Green
 
 ;; Author: Anthony Green <green@moxielogic.com>
 ;; URL: http://github.com/atgreen/paperless
@@ -74,11 +74,10 @@
   (if (null paperless-root-directory)
       (error "Set paperless-root-directory with M-x customize-variable"))
   (setq paperless--table-contents
-	(mapcar
-	 (lambda (i)
-	   (list i (vector "" (file-name-nondirectory i) "")))
-	 (directory-files "./" t (concat "."(regexp-opt (append  '("pdf") image-file-name-extensions)) "\\b"))
-	 ))
+	      (mapcar
+	       (lambda (i)
+	         (list i (vector "" (file-name-nondirectory i) "")))
+	       (directory-files paperless-capture-directory t (concat "."(regexp-opt (append  '("pdf") image-file-name-extensions)) "\\b"))))
   (pop-to-buffer (concat "*Paperless* - " paperless-capture-directory))
   (paperless-scan-directories)
   (paperless-mode)
@@ -96,7 +95,7 @@
       (erase-buffer)
       (insert-file-contents filename)
       (cond ((string-match
-	      (concat "."(regexp-opt image-file-name-extensions) "\\b") filename)
+	      (concat "." (regexp-opt image-file-name-extensions) "\\b") filename)
 	     (image-mode))
 	    ((string-match ".pdf\\b" filename)
 	     (if (fboundp 'pdf-view-mode)
